@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationConfiguration
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd"
+  xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">
+
+	<!-- A human readable but not necessarily unique name for the application instance -->
+	<ApplicationName>Simple UA Client Connectivity</ApplicationName>
+	<!-- A globally unique identifier for the application instance.
+         This is overridden with the value contained in the application certificate. -->
+	<ApplicationUri>urn:localhost:UA:SuaccOne</ApplicationUri>
+	<!-- A globally unique URI for the product (usually assigned by the product vendor) -->
+	<ProductUri>http://opcfoundation.org/UA/SuaccOne</ProductUri>
+	<!-- Indicates the type of application (Client, Server or ClientServer). -->
+	<ApplicationType>Client_1</ApplicationType>
+
+	<!--
+	<SecurityConfiguration>
+		
+		<ApplicationCertificate>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\MachineDefault</StorePath>
+			<SubjectName>UA COM Server Wrapper</SubjectName>
+		</ApplicationCertificate>
+		
+		<TrustedIssuerCertificates>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Certificate Authorities</StorePath>
+		</TrustedIssuerCertificates>
+		
+		<TrustedPeerCertificates>
+			<StoreType>Windows</StoreType>
+			<StorePath>LocalMachine\UA Applications</StorePath>
+		</TrustedPeerCertificates>
+		
+		<RejectedCertificateStore>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\RejectedCertificates</StorePath>
+		</RejectedCertificateStore>
+		<AutoAcceptUntrustedCertificates>false</AutoAcceptUntrustedCertificates>
+	</SecurityConfiguration>
+	-->
+
+	<SecurityConfiguration>
+	
+		<ApplicationCertificate>
+		  <StoreType>Directory</StoreType>
+		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\MachineDefault</StorePath>
+		  <SubjectName>Simple UA Client Connectivity</SubjectName>
+		</ApplicationCertificate>
+   
+		<TrustedPeerCertificates>
+		  <StoreType>Directory</StoreType>
+		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Applications</StorePath>
+		</TrustedPeerCertificates>
+   
+		<TrustedIssuerCertificates>
+		  <StoreType>Directory</StoreType>
+		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Certificate Authorities</StorePath>
+		</TrustedIssuerCertificates>
+   
+		<RejectedCertificateStore>
+		  <StoreType>Directory</StoreType>
+		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\RejectedCertificates</StorePath>
+		</RejectedCertificateStore>
+	
+  </SecurityConfiguration>
+
+	
+	<!-- Maps different transports onto a .NET implementation of a WCF Binding
+  
+       WCF bindings are very complex and have many parameters that can be tweeked. To ensure
+       interoperability the SDK has defined 3 standard bindings which can be selected with this
+       element. Developers may define their own Bindings as well provided the inhierit from the 
+       Opc.Ua.Binding.BaseBinding type and implement the same constructor as the built-in binding
+       provide.
+       
+       Note protocols other than HTTP or UA-TCP are not considered to be interoperable -->
+	<TransportConfigurations>
+		<TransportConfiguration>
+			<UriScheme>http</UriScheme>
+			<TypeName>Opc.Ua.Bindings.UaSoapXmlBinding</TypeName>
+		</TransportConfiguration>
+		<TransportConfiguration>
+			<UriScheme>opc.tcp</UriScheme>
+			<TypeName>Opc.Ua.Bindings.UaTcpBinding</TypeName>
+		</TransportConfiguration>
+		<!--
+    <TransportConfiguration>
+      <UriScheme>net.tcp</UriScheme>
+      <TypeName>Opc.Ua.Bindings.UaSoapXmlOverTcpBinding</TypeName>
+    </TransportConfiguration>
+    <TransportConfiguration>
+      <UriScheme>net.pipe</UriScheme>
+      <TypeName>Opc.Ua.Bindings.UaSoapXmlOverPipeBinding</TypeName>
+    </TransportConfiguration>
+    <TransportConfiguration>
+      <UriScheme>opc.tcp</UriScheme>
+      <TypeName>Opc.Ua.NativeStack.NativeStackBinding,Opc.Ua.NativeStack</TypeName>
+    </TransportConfiguration>
+    -->
+	</TransportConfigurations>
+
+	<!-- Specifies quotas used to by the transport layer -->
+	<TransportQuotas>
+		<!-- The default timeout in milliseconds for operations (used by clients) -->
+		<OperationTimeout>600000</OperationTimeout>
+		<!-- The maximum length for a string value in any message -->
+		<MaxStringLength>1048576</MaxStringLength>
+		<!-- The maximum length for a byte string value in any message -->
+		<MaxByteStringLength>4194304</MaxByteStringLength>
+		<!-- The maximum length for any array in a message. 
+         Note that some protocols do not distinguish between bytes and arrays. 
+         In these cases the binding will choose the larger of 
+         MaxByteStringLength or MaxArrayLength-->
+		<MaxArrayLength>65535</MaxArrayLength>
+		<!-- The maximum size of any message -->
+		<MaxMessageSize>4194304</MaxMessageSize>
+		<!-- The maximum buffer size 
+         This value controls how big a block of memory the transport layer allocates.
+         Setting this value to a large value will reduce performance and use a lot of RAM -->
+		<MaxBufferSize>65535</MaxBufferSize>
+		<!-- The lifetime of a SecureChannel in milliseconds.
+         This specifies how long the server will keep a broken channel around while waiting 
+         for a client to reconnect.
+         Not used by HTTP or .NET TCP bindings -->
+		<ChannelLifetime>300000</ChannelLifetime>
+		<!-- The lifetime of a SecurityToken in milliseconds.
+         This specifies how long a security token can be used without renewal. -->
+		<SecurityTokenLifetime>3600000</SecurityTokenLifetime>
+	</TransportQuotas>
+
+	<!-- This element only needs to be specified for Server or ClientServer applications -->
+	<ServerConfiguration>
+		<BaseAddresses>
+			<!-- <ua:String>opc.tcp://localhost:48400/UA/ComServerWrapper</ua:String>
+			<ua:String>http://localhost:48401/UA/ComServerWrapper</ua:String> --> 
+			<ua:String>opc.tcp://pges632f5x3:51210/UA/SampleServer</ua:String>
+			<ua:String>http://pges632f5x3:51211/UA/SampleServer</ua:String>
+			<ua:String>http://pges632f5x3:51211/UA/SampleServer/Basic256</ua:String>
+			<ua:String>http://pges632f5x3:51211/UA/SampleServer/None</ua:String>
+			<ua:String>https://pges632f5x3:51212/UA/SampleServer/</ua:String>
+		</BaseAddresses>
+		<SecurityPolicies>
+			<ServerSecurityPolicy>
+				<SecurityMode>None_1</SecurityMode>
+				<SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#None</SecurityPolicyUri>
+				<SecurityLevel>0</SecurityLevel>
+			</ServerSecurityPolicy>
+			<ServerSecurityPolicy>
+				<SecurityMode>Sign_2</SecurityMode>
+				<SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256</SecurityPolicyUri>
+				<SecurityLevel>1</SecurityLevel>
+			</ServerSecurityPolicy>
+			<ServerSecurityPolicy>
+				<SecurityMode>SignAndEncrypt_3</SecurityMode>
+				<SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256</SecurityPolicyUri>
+				<SecurityLevel>5</SecurityLevel>
+			</ServerSecurityPolicy>
+		</SecurityPolicies>
+		<MinRequestThreadCount>5</MinRequestThreadCount>
+		<MaxRequestThreadCount>100</MaxRequestThreadCount>
+		<MaxQueuedRequestCount>2000</MaxQueuedRequestCount>
+		<UserTokenPolicies>
+			<ua:UserTokenPolicy>
+				<ua:TokenType>Anonymous_0</ua:TokenType>
+			</ua:UserTokenPolicy>
+			<ua:UserTokenPolicy>
+				<ua:TokenType>UserName_1</ua:TokenType>
+			</ua:UserTokenPolicy>
+		</UserTokenPolicies>
+
+		<DiagnosticsEnabled>false</DiagnosticsEnabled>
+		<MaxSessionCount>100</MaxSessionCount>
+		<MinSessionTimeout>10000</MinSessionTimeout>
+		<MaxSessionTimeout>3600000</MaxSessionTimeout>
+		<MaxBrowseContinuationPoints>10</MaxBrowseContinuationPoints>
+		<MaxQueryContinuationPoints>10</MaxQueryContinuationPoints>
+		<MaxHistoryContinuationPoints>100</MaxHistoryContinuationPoints>
+		<MaxRequestAge>600000</MaxRequestAge>
+		<MinPublishingInterval>100</MinPublishingInterval>
+		<MaxPublishingInterval>3600000</MaxPublishingInterval>
+		<PublishingResolution>50</PublishingResolution>
+		<MaxSubscriptionLifetime>3600000</MaxSubscriptionLifetime>
+		<MaxMessageQueueSize>100</MaxMessageQueueSize>
+		<MaxNotificationQueueSize>100</MaxNotificationQueueSize>
+		<MaxNotificationsPerPublish>1000</MaxNotificationsPerPublish>
+		<MinMetadataSamplingInterval>1000</MinMetadataSamplingInterval>
+		<AvailableSamplingRates />
+		<MaxRegistrationInterval>30000</MaxRegistrationInterval>
+		<NodeManagerSaveFile>Opc.Ua.Server.nodes.xml</NodeManagerSaveFile>
+	</ServerConfiguration>
+
+	<!-- This element is only required for Client and ClientServer applications -->
+	<ClientConfiguration>
+		<!-- The default timeout for new sessions -->
+		<DefaultSessionTimeout>600000</DefaultSessionTimeout>
+
+		<!-- The well-known URLs for the local discovery servers
+         URLs are tested in the order they appear in this list. -->
+		<WellKnownDiscoveryUrls>
+			<ua:String>opc.tcp://{0}:4840/UADiscovery</ua:String>
+			<ua:String>http://{0}:52601/UADiscovery</ua:String>
+			<ua:String>http://{0}/UADiscovery/Default.svc</ua:String>
+		</WellKnownDiscoveryUrls>
+
+		<!-- EndpointDescriptions for system wide discovery servers -->
+		<DiscoveryServers></DiscoveryServers>
+
+		<!-- The file used to save the EndpointDescriptions for servers known to the Client -->
+		<EndpointCacheFilePath>Opc.Ua.SampleClient.Endpoints.xml</EndpointCacheFilePath>
+
+		<!-- The minimum subscription lifetime.
+		This ensures subscriptions are not set to expire too quickly. The requesed lifetime count
+		and keep alive count are calculated using this value and the request publishing interval -->
+		<MinSubscriptionLifetime>10000</MinSubscriptionLifetime>
+
+	</ClientConfiguration>
+
+	<Extensions>
+		<ua:XmlElement>
+			<ComWrapperServerConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/SDK/COMInterop">
+				<WrappedServers>
+					<ComClientConfiguration i:type="ComDaClientConfiguration">
+						<ServerUrl>opc.com://localhost/OPCSample.OpcDa20Server</ServerUrl>
+						<ServerName>DA</ServerName>
+						<MaxReconnectWait>10000</MaxReconnectWait>
+						<SeperatorChars></SeperatorChars>
+						<AvailableLocales>
+							<ua:String>en-US</ua:String>
+							<ua:String>de-DE</ua:String>
+							<ua:String>ja-JP</ua:String>
+						</AvailableLocales>
+						<BrowseToNotSupported>false</BrowseToNotSupported>
+					</ComClientConfiguration>
+					<ComClientConfiguration i:type="ComAeClientConfiguration">
+						<ServerUrl>opc.com://localhost/OPCSample.OPCEventServer/{65168852-5783-11d1-84a0-00608cb8a7e9}</ServerUrl>
+						<ServerName>AE</ServerName>
+						<MaxReconnectWait>10000000</MaxReconnectWait>
+						<SeperatorChars>\</SeperatorChars>
+						<AvailableLocales>
+							<ua:String>en-US</ua:String>
+							<ua:String>de-DE</ua:String>
+							<ua:String>ja-JP</ua:String>
+						</AvailableLocales>
+					</ComClientConfiguration>
+					<ComClientConfiguration i:type="ComHdaClientConfiguration">
+						<ServerUrl>opc.com://localhost/OPCSample.OpcHdaServer/{6a5eedec-1509-4627-997f-993ccb65ab7c}</ServerUrl>
+						<ServerName>HDA</ServerName>
+						<MaxReconnectWait>10000</MaxReconnectWait>
+						<SeperatorChars></SeperatorChars>
+						<AddCapabilitiesToServerObject>true</AddCapabilitiesToServerObject>
+						<AttributeSamplingInterval>1000</AttributeSamplingInterval>
+						<TreatUncertainAsBad>true</TreatUncertainAsBad>
+						<PercentDataBad>0</PercentDataBad>
+						<PercentDataGood>100</PercentDataGood>
+						<SteppedSlopedExtrapolation>false</SteppedSlopedExtrapolation>
+					</ComClientConfiguration>
+				</WrappedServers>
+			</ComWrapperServerConfiguration>
+		</ua:XmlElement>
+	</Extensions>
+
+	<TraceConfiguration>
+		<OutputFilePath>Logs\Opc.Ua.Client_Suacc_1.log.txt</OutputFilePath>
+		<DeleteOnLoad>true</DeleteOnLoad>
+		<!-- Show Only Errors -->
+		<!-- <TraceMasks>1</TraceMasks> -->
+		<!-- Show Only Security and Errors -->
+		<!-- <TraceMasks>513</TraceMasks> -->
+		<!-- Show Only Security, Errors and Trace -->
+		<TraceMasks>515</TraceMasks>
+		<!-- Show Only Security, COM Calls, Errors and Trace -->
+		<!-- <TraceMasks>1023</TraceMasks> -->
+		<!-- Show Only Security, Service Calls, Errors and Trace -->
+		<!-- <TraceMasks>523</TraceMasks> -->
+		<!-- Show Only Security, ServiceResultExceptions, Errors and Trace -->
+		<!-- <TraceMasks>519</TraceMasks> -->
+	</TraceConfiguration>
+	
+</ApplicationConfiguration>

@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Simple Client Library", "Simple-UA-Client-Connectivity\UA Simple Client Library.csproj", "{5A224D2B-4E59-4820-8C20-DA1D8046B0D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stack", "Stack", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{F450344B-8367-4C17-A1A6-3D5634A7C76D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Configuration Library", "..\..\OPC Foundation\SampleApplications\SDK\Configuration\UA Configuration Library.csproj", "{8AB4CB8E-E216-425D-B600-350D0B6B59CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Core Library", "..\..\OPC Foundation\Stack\Core\UA Core Library.csproj", "{7543AFCB-F5AF-44AF-83C9-23164474C1E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Client Library", "..\..\OPC Foundation\SampleApplications\SDK\Client\UA Client Library.csproj", "{42E9198C-ED2C-4BC8-B0A1-55D91D8F1E90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Client Controls", "..\..\OPC Foundation\SampleApplications\SDK\Controls\UA Client Controls.csproj", "{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A224D2B-4E59-4820-8C20-DA1D8046B0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A224D2B-4E59-4820-8C20-DA1D8046B0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A224D2B-4E59-4820-8C20-DA1D8046B0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A224D2B-4E59-4820-8C20-DA1D8046B0D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB4CB8E-E216-425D-B600-350D0B6B59CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB4CB8E-E216-425D-B600-350D0B6B59CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB4CB8E-E216-425D-B600-350D0B6B59CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB4CB8E-E216-425D-B600-350D0B6B59CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7543AFCB-F5AF-44AF-83C9-23164474C1E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7543AFCB-F5AF-44AF-83C9-23164474C1E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7543AFCB-F5AF-44AF-83C9-23164474C1E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7543AFCB-F5AF-44AF-83C9-23164474C1E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E9198C-ED2C-4BC8-B0A1-55D91D8F1E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E9198C-ED2C-4BC8-B0A1-55D91D8F1E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E9198C-ED2C-4BC8-B0A1-55D91D8F1E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E9198C-ED2C-4BC8-B0A1-55D91D8F1E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AB4CB8E-E216-425D-B600-350D0B6B59CD} = {F450344B-8367-4C17-A1A6-3D5634A7C76D}
+		{7543AFCB-F5AF-44AF-83C9-23164474C1E9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{42E9198C-ED2C-4BC8-B0A1-55D91D8F1E90} = {F450344B-8367-4C17-A1A6-3D5634A7C76D}
+		{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A} = {F450344B-8367-4C17-A1A6-3D5634A7C76D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37522F87-6B14-4179-9FB7-3474A9BEFC52}
+	EndGlobalSection
+EndGlobal
