@@ -56,7 +56,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\AppUtils.cs" />
-    <Compile Include="Tasks\TestTsk.cs" />
+    <Compile Include="Tasks\TestTaskCancellationTkn.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

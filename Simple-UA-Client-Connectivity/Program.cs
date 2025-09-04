@@ -2,6 +2,8 @@
 using Simple_UA_Client_Connectivity.Tasks;
 using SimpleUAClientLibrary.Controllers;
 using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Simple_UA_Client_Connectivity
 {
@@ -22,23 +24,22 @@ namespace Simple_UA_Client_Connectivity
             {
                 Prg.ConnectEndPoint(p_useSecurity);
 
-                /* Example 1 : Print all nodes */
-                Prg.PrintNodes();
+                /* EXAMPLE 1 : Print all nodes */
+                //Prg.PrintNodes();
 
-                /* Example 2 : Create subscriptions */
-                //Prg.CreateSubscription(null); // create default subscription
-                //Prg.CreateSubscription("ns=4;s=5:?ServerStatus", "ServerStatus");
+                /* EXAMPLE 2 : Create pubications */
+                //Prg.CreateSubscription("ns=4;s=5:?ServerStatus/ServerState", "ServerState");
 
-                /* Example 3 : Read node (server status) task */               
-                TestTsk.Main(1, Prg, "i=2256");
-
+                /* EXAMPLE 3 : Read nodes task */
+                string[] nodeIds = { "i=2256", "i=2268", "i=2258" };
+                TestTaskCancellationTkn.Launch(Prg, nodeIds);
             }
             catch (Exception exception)
             {
                 Utils.Trace("Session opening error: " + exception.ToString());
             }
             finally
-            {
+            {                
                 Prg.DisconnectEndPoint();
             }
         }

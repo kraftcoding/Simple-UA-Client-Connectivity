@@ -59,7 +59,7 @@ namespace SimpleUAClientLibrary.Controllers
                 PreferredLocales);
 
             // set up keep alive callback.
-            m_session.KeepAlive += new KeepAliveEventHandler(Session_KeepAlive);            
+           // m_session.KeepAlive += new KeepAliveEventHandler(Session_KeepAlive);            
 
             // raise an event.
             DoConnectComplete(null);
