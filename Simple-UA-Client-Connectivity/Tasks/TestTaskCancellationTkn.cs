@@ -9,7 +9,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
 {
     internal class TestTaskCancellationTkn
     {
-        public static async Task Launch(ProgramCtrl Prg, string[] nodeIds)
+        public static async Task Launch(ProgramCtrl Prg, string[] nodeIds, int msec)
         {
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
@@ -30,11 +30,15 @@ namespace Simple_UA_Client_Connectivity.Tasks
             try
             {
                 Utils.Trace("Starting long-running task...");
-                await LongRunningTaskAsync(token, Prg, nodeIds);
+                await LongRunningTaskAsync(token, Prg, nodeIds, msec);
             }
             catch (OperationCanceledException)
             {
                 Utils.Trace("Task was cancelled by user");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
@@ -45,57 +49,55 @@ namespace Simple_UA_Client_Connectivity.Tasks
 
         }
 
-        static async Task LongRunningTaskAsync(CancellationToken token, ProgramCtrl Prg, string[] nodeIds)
+        static async Task LongRunningTaskAsync(CancellationToken token, ProgramCtrl Prg, string[] nodeIds, int msec)
         {
             do
             {
                 // Check if cancellation is requested
                 token.ThrowIfCancellationRequested();
-                LaunchThreads(Prg, nodeIds);
+                ReadNodes(Prg, nodeIds, msec);
             }
             while (!token.IsCancellationRequested);
 
             Utils.Trace("Task completed successfully");
         }
 
-        internal static void LaunchThreads(ProgramCtrl Prg, string[] nodeIds)
+        internal static void ReadNodes(ProgramCtrl Prg, string[] nodeIds, int msec)
         {
-            if (nodeIds.Length == 1)
+            List<NodeId> variableIds = new List<NodeId>();
+            List<Type> expectedTypes = new List<Type>();
+
+            List<object> values;
+            List<ServiceResult> errors;
+
+            foreach (var nodeId in nodeIds)
             {
-                NodeId dataNodeId = new NodeId(nodeIds[0]);
-                DataValue simulatedDataValue = Prg.m_session.ReadValue(dataNodeId);
-                Utils.Trace(simulatedDataValue.ToString());
+                variableIds.Add(new NodeId(nodeId));
+                expectedTypes.Add(null);
             }
-            else
+
+            Prg.m_session.ReadValues(variableIds, expectedTypes, out values, out errors);
+
+            int i = 0;
+            foreach (object obj in values)
             {
-                List<NodeId> variableIds = new List<NodeId>();
-                List<Type> expectedTypes = new List<Type>();
-
-                List<object> values;
-                List<ServiceResult> errors;
-
-                foreach (var nedId in nodeIds)
+                switch (obj)
                 {
-                    variableIds.Add(new NodeId(nedId));
-                    expectedTypes.Add(null);
+                    case null:
+                        Utils.Trace(errors[i].ToLongString() + ", " + errors[i].Code + ", " + nodeIds[i]);
+                        break;
+                    default:
+                        if (obj.GetType() == typeof(DateTime)) Utils.Trace(obj.ToString() + ", " + nodeIds[i]);
+                        if (obj.GetType() == typeof(Opc.Ua.ServerStatusDataType))
+                        {
+                            Utils.Trace("State: " + ((Opc.Ua.ServerStatusDataType)values[0]).State + ", " + nodeIds[i]);
+                        }
+                        break;
                 }
-
-                Prg.m_session.ReadValues(variableIds, expectedTypes, out values, out errors);
-
-                foreach (object obj in values)
-                {
-                    if (obj == null) break;
-                    if (obj.GetType() == typeof(DateTime)) Utils.Trace(obj.ToString());
-                    if (obj.GetType() == typeof(Opc.Ua.ServerStatusDataType))
-                    {
-                        Utils.Trace("CurrentTime: " + ((Opc.Ua.ServerStatusDataType)values[0]).CurrentTime);
-                        Utils.Trace("State: " + ((Opc.Ua.ServerStatusDataType)values[0]).State);
-                    }
-                }
-
-                Thread.Sleep(2000);
+                i++;
             }
+
+            Thread.Sleep(msec);
         }
-
     }
 }

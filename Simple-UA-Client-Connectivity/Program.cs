@@ -25,18 +25,18 @@ namespace Simple_UA_Client_Connectivity
                 Prg.ConnectEndPoint(p_useSecurity);
 
                 /* EXAMPLE 1 : Print all nodes */
-                //Prg.PrintNodes();
+                //Prg.PrintNodesToLog();
 
                 /* EXAMPLE 2 : Create pubications */
                 //Prg.CreateSubscription("ns=4;s=5:?ServerStatus/ServerState", "ServerState");
 
                 /* EXAMPLE 3 : Read nodes task */
                 string[] nodeIds = { "i=2256", "i=2268", "i=2258" };
-                TestTaskCancellationTkn.Launch(Prg, nodeIds);
+                TestTaskCancellationTkn.Launch(Prg, nodeIds, 2000);
             }
             catch (Exception exception)
             {
-                Utils.Trace("Session opening error: " + exception.ToString());
+                Utils.Trace("Error: " + exception.ToString());
             }
             finally
             {                

@@ -49,7 +49,7 @@ namespace SimpleUAClientLibrary.Controllers
             Utils.Trace(nodeId + " suscription created");
         }
 
-        public void PrintNodes()
+        public void PrintNodesToLog()
         {
             NodeCtrl Nods = new NodeCtrl();
             Nods.PrintRootFolderToLog(m_session);           
