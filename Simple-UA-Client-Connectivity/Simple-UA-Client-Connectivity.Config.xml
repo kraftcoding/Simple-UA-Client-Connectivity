@@ -135,11 +135,11 @@
 		<BaseAddresses>
 			<!-- <ua:String>opc.tcp://localhost:48400/UA/ComServerWrapper</ua:String>
 			<ua:String>http://localhost:48401/UA/ComServerWrapper</ua:String> --> 
-			<ua:String>opc.tcp://pges632f5x3:51210/UA/SampleServer</ua:String>
-			<ua:String>http://pges632f5x3:51211/UA/SampleServer</ua:String>
-			<ua:String>http://pges632f5x3:51211/UA/SampleServer/Basic256</ua:String>
-			<ua:String>http://pges632f5x3:51211/UA/SampleServer/None</ua:String>
-			<ua:String>https://pges632f5x3:51212/UA/SampleServer/</ua:String>
+			<ua:String>opc.tcp://localhost:51210/UA/SampleServer</ua:String>
+			<ua:String>http://localhost:51211/UA/SampleServer</ua:String>
+			<ua:String>http://localhost:51211/UA/SampleServer/Basic256</ua:String>
+			<ua:String>http://localhost:51211/UA/SampleServer/None</ua:String>
+			<ua:String>https://localhost:51212/UA/SampleServer/</ua:String>
 		</BaseAddresses>
 		<SecurityPolicies>
 			<ServerSecurityPolicy>
