@@ -3,14 +3,12 @@ using Opc.Ua.Client;
 using SimpleUAClientLibrary.Filters;
 using System.Collections.Generic;
 
-
 namespace SimpleUAClientLibrary.Controllers
 {
     internal class SubscriptionsCtrl
     {
         #region Private Fields        
         bool m_connectedOnce = false;
-        Subscription m_subscription = null;
         private FilterDefinition m_filter;
         private Dictionary<NodeId, NodeId> m_eventTypeMappings;
         private MonitoredItem m_monitoredItem;
@@ -31,12 +29,23 @@ namespace SimpleUAClientLibrary.Controllers
         /// <summary>
         /// Updates the application after connecting to or disconnecting from the server.
         /// </summary>
-        internal void Create(Session m_session, string nodeId, string name)
+
+        #region Internal methods
+
+        internal Subscription CreateDefault(Session m_session)
+        {
+            Subscription m_subscription = new Subscription(m_session.DefaultSubscription) { PublishingInterval = 10000 };
+            m_session.AddSubscription(m_subscription);
+
+            return m_subscription;
+        }
+
+        internal Subscription CreateByDictionary(Session m_session, Dictionary<string, string> subsDictionary)
         {
             // check for disconnect.
             if (m_session == null)
             {
-                return;
+                return null;
             }
 
             // set a suitable initial state.
@@ -45,36 +54,32 @@ namespace SimpleUAClientLibrary.Controllers
                 m_connectedOnce = true;
             }
 
-            // create the default subscription.
-            m_subscription = new Subscription();
-
-            m_subscription.DisplayName = name;
-            m_subscription.PublishingInterval = 1000;
-            m_subscription.KeepAliveCount = 10;
-            m_subscription.LifetimeCount = 100;
-            m_subscription.MaxNotificationsPerPublish = 1000;
-            m_subscription.PublishingEnabled = true;
-            m_subscription.TimestampsToReturn = TimestampsToReturn.Both;
-
+            Subscription m_subscription = GetSubscription(m_session, subsDictionary, TimestampsToReturn.Both);
             m_session.AddSubscription(m_subscription);
-            m_subscription.Create();
-            
-            // standard
-            m_monitoredItem = GetMonitoredItem(nodeId, name, MonitoringMode.Reporting);
 
-            // filtered
-            //m_monitoredItem = GetMonitoredItemWithFilter(nodeId, m_session)
+            return m_subscription;
+        }
+
+        internal MonitoredItem GetMonitoredItem(string nodeId, string displayName, MonitoringMode monitoringMode, Session m_session)
+        {
+            MonitoredItem m_monitoredItem = null;
+
+            if (m_session == null)
+            {
+                m_monitoredItem = GetMonitoredItem(nodeId, displayName, monitoringMode);
+            }
+            else
+            {
+                m_monitoredItem = GetMonitoredItemWithFilter(nodeId, m_session);
+            }
 
             //set up callback for notifications.
             m_monitoredItem.Notification += OnMonitoredItemNotificationEvent;
 
-            m_subscription.AddItem(m_monitoredItem);
-
-            m_subscription.ApplyChanges();
-
-            //m_subscription.ConditionRefresh();
-
+            return m_monitoredItem;
         }
+
+        #endregion
 
         #region Private methods
 
@@ -92,9 +97,27 @@ namespace SimpleUAClientLibrary.Controllers
             if (monitoredItem != null)
             {
                 var message = System.String.Format("Event called for Variable \"{0}\" with Value = {1}.",
-                                            monitoredItem.DisplayName, notification.Value);                
+                                            monitoredItem.DisplayName, notification.Value);
                 Utils.Trace(message);
             }
+        }
+
+        private Subscription GetSubscription(Session m_session, Dictionary<string, string> subsDictionary, TimestampsToReturn timestampsToReturn)
+        {
+            // create the default subscription.
+            Subscription m_subscription = new Subscription();
+
+            m_subscription.DisplayName = subsDictionary["DisplayName"];
+            m_subscription.PublishingInterval = int.Parse(subsDictionary["PublishingInterval"]);
+            m_subscription.KeepAliveCount = uint.Parse(subsDictionary["KeepAliveCount"]);
+            m_subscription.LifetimeCount = uint.Parse(subsDictionary["LifetimeCount"]);
+            m_subscription.MaxNotificationsPerPublish = uint.Parse(subsDictionary["MaxNotificationsPerPublish"]);
+            m_subscription.PublishingEnabled = bool.Parse(subsDictionary["PublishingEnabled"]);
+            m_subscription.TimestampsToReturn = timestampsToReturn;
+
+            m_session.AddSubscription(m_subscription);
+
+            return m_subscription;
         }
 
         private MonitoredItem GetMonitoredItem(string nodeId, string displayName, MonitoringMode monitoringMode)
@@ -114,19 +137,20 @@ namespace SimpleUAClientLibrary.Controllers
             return monitoredItem;
         }
 
-        //private MonitoredItem GetMonitoredItemWithFilter(string nodeId, Session m_session)
-        //{
-        //    // must specify the fields that the form is interested in.
-        //    m_filter.SelectClauses = m_filter.ConstructSelectClauses(
-        //        m_session,
-        //        NodeId.Parse(nodeId), // accepts multiple NodeIds
-        //        ObjectTypeIds.DialogConditionType,
-        //        ObjectTypeIds.ExclusiveLimitAlarmType,
-        //        ObjectTypeIds.NonExclusiveLimitAlarmType);
+        private MonitoredItem GetMonitoredItemWithFilter(string nodeId, Session m_session)
+        {
+            // must specify the fields that the form is interested in.
+            m_filter.SelectClauses = m_filter.ConstructSelectClauses(
+                m_session,
+                NodeId.Parse(nodeId), // accepts multiple NodeIds
+                ObjectTypeIds.DialogConditionType,
+                ObjectTypeIds.ExclusiveLimitAlarmType,
+                ObjectTypeIds.NonExclusiveLimitAlarmType);
 
-        //    // create a monitored item based on the current filter settings.
-        //    return m_filter.CreateMonitoredItem(m_session);
-        //}
+            // create a monitored item based on the current filter settings.
+            return m_filter.CreateMonitoredItem(m_session);
+        }
+
 
         #endregion
 
