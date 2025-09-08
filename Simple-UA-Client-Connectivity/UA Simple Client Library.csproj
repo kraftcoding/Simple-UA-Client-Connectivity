@@ -56,7 +56,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\AppUtils.cs" />
-    <Compile Include="Tasks\TestTaskCancellationTkn.cs" />
+    <Compile Include="Test Tasks\TemplateTsk.cs" />
+    <Compile Include="Test Tasks\ReadNodesTsk.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

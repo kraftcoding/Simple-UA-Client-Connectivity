@@ -115,6 +115,7 @@ namespace SimpleUAClientLibrary.Controllers
             m_subscription.PublishingEnabled = bool.Parse(subsDictionary["PublishingEnabled"]);
             m_subscription.TimestampsToReturn = timestampsToReturn;
 
+            // Adds m_session instance for m_subscription
             m_session.AddSubscription(m_subscription);
 
             return m_subscription;

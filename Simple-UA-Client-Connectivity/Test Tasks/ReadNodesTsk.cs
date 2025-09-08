@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Simple_UA_Client_Connectivity.Tasks
 {
-    internal class TestTaskCancellationTkn
+    internal class ReadNodesTsk
     {
         public static async Task Launch(ProgramCtrl Prg, string[] nodeIds, int msec)
         {
