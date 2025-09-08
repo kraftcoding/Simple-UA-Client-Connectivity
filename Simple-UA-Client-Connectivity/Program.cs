@@ -31,7 +31,7 @@ namespace Simple_UA_Client_Connectivity
             //string nodeId = "ns=2;i=138"; // Boiler #1 (quick start app server)
             string[] nodeIds = { "i=2256", "i=2268", "i=2258" };
 
-            #endregion
+            #endregion          
 
             // create program controller
             ProgramCtrl Prg = new ProgramCtrl(p_baseAddressId);
@@ -41,7 +41,7 @@ namespace Simple_UA_Client_Connectivity
             {
                 // Stablish comunication with server
                 // TODO:
-                // - Implement the keep alive procedure to manage reconnecttions
+                // - Implement the keep alive procedure to manage reconnections
                 Prg.ConnectEndPoint(p_useSecurity);
 
                 /* EXAMPLE 1 : Print all nodes */
@@ -63,6 +63,6 @@ namespace Simple_UA_Client_Connectivity
             {                
                 Prg.DisconnectEndPoint();
             }
-        }
+        }        
     }
 }

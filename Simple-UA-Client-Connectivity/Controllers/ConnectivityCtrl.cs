@@ -58,7 +58,7 @@ namespace SimpleUAClientLibrary.Controllers
                 PreferredLocales);
 
             // set up keep alive callback.
-           // m_session.KeepAlive += new KeepAliveEventHandler(Session_KeepAlive);            
+            m_session.KeepAlive += new KeepAliveEventHandler(Session_KeepAlive);            
 
             // raise an event.
             DoConnectComplete(null);
@@ -89,34 +89,12 @@ namespace SimpleUAClientLibrary.Controllers
             }
 
             // raise an event.
-            DoConnectComplete(null);
+            DoConnectComplete(null);            
         }
 
         #endregion
 
-        #region Private methods
-
-        //private void Disconnect(Session m_session)
-        //{
-        //    //UpdateStatus(false, DateTime.UtcNow, "Disconnected");
-
-        //    // stop any reconnect operation.
-        //    if (m_reconnectHandler != null)
-        //    {
-        //        m_reconnectHandler.Dispose();
-        //        m_reconnectHandler = null;
-        //    }
-
-        //    // disconnect any existing session.
-        //    if (m_session != null)
-        //    {
-        //        m_session.Close(10000);
-        //        m_session = null;
-        //    }
-
-        //    // raise an event.
-        //    DoConnectComplete(null);
-        //}
+        #region Private methods       
 
         /// <summary>
         /// Handles a keep alive event from a session.
