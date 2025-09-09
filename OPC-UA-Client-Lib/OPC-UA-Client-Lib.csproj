@@ -49,7 +49,6 @@
     <Compile Include="Controllers\SubscriptionsCtrl.cs" />
     <Compile Include="Filters\FilterDefinition.cs" />
     <Compile Include="Helpers\AppUtils.cs" />
-    <Compile Include="Helpers\PCQueue.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

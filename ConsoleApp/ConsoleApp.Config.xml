@@ -42,31 +42,31 @@
 	-->
 
 	<SecurityConfiguration>
-	
-		<ApplicationCertificate>
-		  <StoreType>Directory</StoreType>
-		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\MachineDefault</StorePath>
-		  <SubjectName>Simple UA Client Connectivity</SubjectName>
-		</ApplicationCertificate>
-   
-		<TrustedPeerCertificates>
-		  <StoreType>Directory</StoreType>
-		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Applications</StorePath>
-		</TrustedPeerCertificates>
-   
-		<TrustedIssuerCertificates>
-		  <StoreType>Directory</StoreType>
-		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Certificate Authorities</StorePath>
-		</TrustedIssuerCertificates>
-   
-		<RejectedCertificateStore>
-		  <StoreType>Directory</StoreType>
-		  <StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\RejectedCertificates</StorePath>
-		</RejectedCertificateStore>
-	
-  </SecurityConfiguration>
 
-	
+		<ApplicationCertificate>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\MachineDefault</StorePath>
+			<SubjectName>Simple UA Client Connectivity</SubjectName>
+		</ApplicationCertificate>
+
+		<TrustedPeerCertificates>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Applications</StorePath>
+		</TrustedPeerCertificates>
+
+		<TrustedIssuerCertificates>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Certificate Authorities</StorePath>
+		</TrustedIssuerCertificates>
+
+		<RejectedCertificateStore>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\RejectedCertificates</StorePath>
+		</RejectedCertificateStore>
+
+	</SecurityConfiguration>
+
+
 	<!-- Maps different transports onto a .NET implementation of a WCF Binding
   
        WCF bindings are very complex and have many parameters that can be tweeked. To ensure
@@ -131,15 +131,17 @@
 	</TransportQuotas>
 
 	<!-- This element only needs to be specified for Server or ClientServer applications -->
+
 	<ServerConfiguration>
 		<BaseAddresses>
-			<!-- <ua:String>opc.tcp://localhost:48400/UA/ComServerWrapper</ua:String>
-			<ua:String>http://localhost:48401/UA/ComServerWrapper</ua:String> --> 
-			<ua:String>opc.tcp://localhost:51210/UA/SampleServer</ua:String>
-			<ua:String>http://localhost:51211/UA/SampleServer</ua:String>
-			<ua:String>http://localhost:51211/UA/SampleServer/Basic256</ua:String>
-			<ua:String>http://localhost:51211/UA/SampleServer/None</ua:String>
-			<ua:String>https://localhost:51212/UA/SampleServer/</ua:String>
+			<ua:String>opc.tcp://win-ugcst86jvc7:62541/Quickstarts/BoilerServer</ua:String>
+			<!--<ua:String>opc.tcp://localhost:48400/UA/ComServerWrapper</ua:String>
+			<ua:String>http://localhost:48401/UA/ComServerWrapper</ua:String>  
+			<ua:String>opc.tcp://pges632f5x3:51210/UA/SampleServer</ua:String>
+			<ua:String>http://pges632f5x3:51211/UA/SampleServer</ua:String>
+			<ua:String>http://pges632f5x3:51211/UA/SampleServer/Basic256</ua:String>
+			<ua:String>http://pges632f5x3:51211/UA/SampleServer/None</ua:String>
+			<ua:String>https://pges632f5x3:51212/UA/SampleServer/</ua:String> -->
 		</BaseAddresses>
 		<SecurityPolicies>
 			<ServerSecurityPolicy>
@@ -277,5 +279,5 @@
 		<!-- Show Only Security, ServiceResultExceptions, Errors and Trace -->
 		<!-- <TraceMasks>519</TraceMasks> -->
 	</TraceConfiguration>
-	
+
 </ApplicationConfiguration>
