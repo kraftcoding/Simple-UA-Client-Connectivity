@@ -28,9 +28,10 @@ namespace Simple_UA_Client_Connectivity
 
             // Test nodes                     
             //string nodeId = "i=2256"; // ServerStatus
-            string nodeId = "i=11493"; // Simple Alarm Server
+            //string nodeId = "i=2266"; // Simple Alarm Server
             //string[] nodeIds = { "i=2256", "i=2268", "i=2258" };
-            string[] nodeIds = { "i=11493" };
+            //string[] nodeIds = { "ns=2;s=0:/Green" };
+            string[] nodeIds = { "i=2266" };
 
             #endregion          
 
@@ -48,11 +49,14 @@ namespace Simple_UA_Client_Connectivity
 
                 /* EXAMPLE 2 : Create subscriptions */
                 //Prg.CreateSubscription(null, null, null, 0); // Default
-                Prg.CreateSubscription(nodeId, "Tets suscription", subsDictionary, MonitoringMode.Reporting);
-                TemplateTsk.Launch(Prg, 2000); // Template task to manage the monitorized suscription events
+                //Prg.CreateSubscription(nodeId, "Tets suscription", subsDictionary, MonitoringMode.Reporting);
+                //TemplateTsk.Launch(Prg, 2000); // Template task to manage the monitorized suscription events
 
                 /* EXAMPLE 3 : Read nodes task with cancellation token */
-               //ReadNodesTsk.Launch(Prg, nodeIds, 2000);
+                //ReadNodesTsk.Launch(Prg, nodeIds, 2000);
+
+                /* EXAMPLE 4 : Write nodes task with cancellation token */
+                WriteNodesTsk.Launch(Prg, nodeIds, 2000);
             }
             catch (Exception exception)
             {
