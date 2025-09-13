@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ConnectivityCtrl.cs" />
-    <Compile Include="Controllers\NodeCtrl.cs" />
-    <Compile Include="Controllers\ProgramCtrl.cs" />
-    <Compile Include="Controllers\SubscriptionsCtrl.cs" />
+    <Compile Include="Managers\ConnectivityManager.cs" />
+    <Compile Include="Managers\NodeManager.cs" />
+    <Compile Include="Managers\ProgramManager.cs" />
+    <Compile Include="Managers\SubscriptionsManager.cs" />
     <Compile Include="Filters\FilterDefinition.cs" />
     <Compile Include="Helpers\AppUtils.cs" />
     <Compile Include="Helpers\Utils.cs" />

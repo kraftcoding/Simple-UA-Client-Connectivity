@@ -45,8 +45,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test Tasks\ReadNodesTsk.cs" />
-    <Compile Include="Test Tasks\TemplateTsk.cs" />
+    <Compile Include="Tasks\ReadNodesTsk.cs" />
+    <Compile Include="Tasks\TemplateTsk.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

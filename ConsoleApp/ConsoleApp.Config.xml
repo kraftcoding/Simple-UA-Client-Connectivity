@@ -134,7 +134,8 @@
 
 	<ServerConfiguration>
 		<BaseAddresses>
-			<ua:String>opc.tcp://win-ugcst86jvc7:62541/Quickstarts/BoilerServer</ua:String>
+			<ua:String>opc.tcp://localhost:62544/SimpleServers/AlarmConditionServer</ua:String>
+			<ua:String>http://localhost:62543/SimpleServers/AlarmConditionServer</ua:String>
 			<!--<ua:String>opc.tcp://localhost:48400/UA/ComServerWrapper</ua:String>
 			<ua:String>http://localhost:48401/UA/ComServerWrapper</ua:String>  
 			<ua:String>opc.tcp://pges632f5x3:51210/UA/SampleServer</ua:String>
@@ -264,7 +265,7 @@
 	</Extensions>
 
 	<TraceConfiguration>
-		<OutputFilePath>Logs\Opc.Ua.Client_Suacc_1.log.txt</OutputFilePath>
+		<OutputFilePath>Logs\Simple.Client.log.txt</OutputFilePath>
 		<DeleteOnLoad>true</DeleteOnLoad>
 		<!-- Show Only Errors -->
 		<!-- <TraceMasks>1</TraceMasks> -->

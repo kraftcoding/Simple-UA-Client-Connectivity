@@ -8,7 +8,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
 {
     internal class TemplateTsk
     {
-        public static async Task Launch(ProgramCtrl Prg, int msec)
+        public static async Task Launch(ProgramManager Prg, int msec)
         {
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
@@ -37,7 +37,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
             }
             catch (Exception ex)
             {
-                throw ex;
+                Utils.Trace("Error: " + ex.ToString());
             }
             finally
             {
@@ -48,7 +48,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
 
         }
 
-        static async Task LongRunningTaskAsync(CancellationToken token, ProgramCtrl Prg, int msec)
+        static async Task LongRunningTaskAsync(CancellationToken token, ProgramManager Prg, int msec)
         {
             do
             {
@@ -62,7 +62,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
             Utils.Trace("Task completed successfully");
         }
 
-        internal static void SubProcedure(ProgramCtrl Prg, string[] nodeIds, int msec)
+        internal static void SubProcedure(ProgramManager Prg, string[] nodeIds, int msec)
         {
 
             //... here goes the logic of the sub-procedure

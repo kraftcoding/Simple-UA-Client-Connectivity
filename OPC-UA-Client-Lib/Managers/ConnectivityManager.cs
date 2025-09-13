@@ -4,10 +4,10 @@ using System;
 
 namespace SimpleUAClientLibrary.Controllers
 {
-    internal class ConnectivityCtrl
+    internal class ConnectivityManager
     {
         #region constructor
-        public ConnectivityCtrl(ApplicationConfiguration configuration) {
+        public ConnectivityManager(ApplicationConfiguration configuration) {
             m_configuration = configuration;
             m_CertificateValidation = new CertificateValidationEventHandler(CertificateValidator_CertificateValidation);
         }

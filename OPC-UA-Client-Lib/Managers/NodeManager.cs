@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace Simple_UA_Client_Connectivity.Controllers
 {
-    internal class NodeCtrl
+    internal class NodeManager
     {
         private NodeId m_rootId;
 
-        public NodeCtrl() {
+        public NodeManager() {
             m_rootId = Opc.Ua.ObjectIds.ObjectsFolder;
         }
 

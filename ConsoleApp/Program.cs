@@ -14,7 +14,7 @@ namespace Simple_UA_Client_Connectivity
             #region Global variables
 
             //Params
-            bool p_useSecurity = true;
+            bool p_useSecurity = false;
             int p_baseAddressId = 0; //default 0
 
             //Test subscription
@@ -28,29 +28,27 @@ namespace Simple_UA_Client_Connectivity
 
             // Test nodes                     
             string nodeId = "i=2256"; // ServerStatus
-            //string nodeId = "ns=2;i=138"; // Boiler #1 (quick start app server)
+            //string nodeId = "ns=2;s=0:Green/East"; // Simple Alarm Server
             string[] nodeIds = { "i=2256", "i=2268", "i=2258" };
 
             #endregion          
 
             // create program controller
-            ProgramCtrl Prg = new ProgramCtrl(p_baseAddressId);
+            ProgramManager Prg = new ProgramManager(p_baseAddressId);
 
             // manage connection
             try
             {
                 // Stablish comunication with server
-                // TODO:
-                // - Implement the keep alive procedure to manage reconnections
                 Prg.ConnectEndPoint(p_useSecurity);
 
                 /* EXAMPLE 1 : Print all nodes */
-                //Prg.PrintNodesToLog();
+                Prg.PrintNodesToLog();
 
                 /* EXAMPLE 2 : Create subscriptions */
                 //Prg.CreateSubscription(null, null, null, 0); // Default
                 Prg.CreateSubscription(nodeId, "Tets suscription", subsDictionary, MonitoringMode.Reporting);
-                TemplateTsk.Launch(Prg, 2000); // Template task to manage the monitorized suscription events and manage a controled shut down
+                TemplateTsk.Launch(Prg, 2000); // Template task to manage the monitorized suscription events
 
                 /* EXAMPLE 3 : Read nodes task with cancellation token */
                 //ReadNodesTsk.Launch(Prg, nodeIds, 2000);

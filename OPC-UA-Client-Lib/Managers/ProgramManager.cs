@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SimpleUAClientLibrary.Controllers
 {
-    public class ProgramCtrl
+    public class ProgramManager
     {
         #region Public objects
         public Session m_session;
@@ -16,10 +16,10 @@ namespace SimpleUAClientLibrary.Controllers
         private ApplicationInstance application;
         private ApplicationConfiguration m_configuration;
         private string m_endPoint;        
-        private ConnectivityCtrl ConnCtrl;
+        private ConnectivityManager ConnCtrl;
         #endregion
 
-        public ProgramCtrl(int baseAddressId)
+        public ProgramManager(int baseAddressId)
         {
             // application config. section
             application = new ApplicationInstance();
@@ -39,7 +39,7 @@ namespace SimpleUAClientLibrary.Controllers
             m_endPoint = m_configuration.ServerConfiguration.BaseAddresses[baseAddressId];
 
             // create connectivity controler
-            ConnCtrl = new ConnectivityCtrl(m_configuration);
+            ConnCtrl = new ConnectivityManager(m_configuration);
         }
 
         #region Public objects
@@ -51,7 +51,7 @@ namespace SimpleUAClientLibrary.Controllers
 
         public void CreateSubscription(string nodeId, string name, Dictionary<string, string> subsDictionary, MonitoringMode monitoringMode)
         {
-            SubscriptionsCtrl Subs = new SubscriptionsCtrl();
+            SubscriptionsManager Subs = new SubscriptionsManager();
             Subscription m_subscription = null;
 
             if (subsDictionary == null)
@@ -86,7 +86,7 @@ namespace SimpleUAClientLibrary.Controllers
 
         public void PrintNodesToLog()
         {
-            NodeCtrl Nods = new NodeCtrl();
+            NodeManager Nods = new NodeManager();
             Nods.PrintRootFolderToLog(m_session);
         }
 

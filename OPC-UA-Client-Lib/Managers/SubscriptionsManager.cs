@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SimpleUAClientLibrary.Controllers
 {
-    internal class SubscriptionsCtrl
+    internal class SubscriptionsManager
     {
         #region Private Fields        
         bool m_connectedOnce = false;
@@ -15,7 +15,7 @@ namespace SimpleUAClientLibrary.Controllers
         private MonitoredItemNotificationEventHandler m_MonitoredItem_Notification;
         #endregion
 
-        public SubscriptionsCtrl()
+        public SubscriptionsManager()
         {
             // the filter to use.
             m_filter = new FilterDefinition();

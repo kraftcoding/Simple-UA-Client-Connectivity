@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Client Library", "..\..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Client Controls", "..\..\OPC Foundation\SampleApplications\SDK\Controls\UA Client Controls.csproj", "{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console App", "ConsoleApp\Console App.csproj", "{002BD87B-7970-4A55-AF3C-506BC1CBF359}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{002BD87B-7970-4A55-AF3C-506BC1CBF359}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPC-UA-Client-Lib", "OPC-UA-Client-Lib\OPC-UA-Client-Lib.csproj", "{F15A60FE-C55C-4C19-8454-56E84E095060}"
 EndProject

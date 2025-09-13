@@ -9,7 +9,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
 {
     internal class ReadNodesTsk
     {
-        public static async Task Launch(ProgramCtrl Prg, string[] nodeIds, int msec)
+        public static async Task Launch(ProgramManager Prg, string[] nodeIds, int msec)
         {
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
@@ -38,7 +38,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
             }
             catch (Exception ex)
             {
-                throw ex;
+                Utils.Trace("Error: " + ex.ToString());
             }
             finally
             {
@@ -49,7 +49,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
 
         }
 
-        static async Task LongRunningTaskAsync(CancellationToken token, ProgramCtrl Prg, string[] nodeIds, int msec)
+        static async Task LongRunningTaskAsync(CancellationToken token, ProgramManager Prg, string[] nodeIds, int msec)
         {
             do
             {
@@ -62,7 +62,7 @@ namespace Simple_UA_Client_Connectivity.Tasks
             Utils.Trace("Task completed successfully");
         }
 
-        internal static void ReadNodes(ProgramCtrl Prg, string[] nodeIds, int msec)
+        internal static void ReadNodes(ProgramManager Prg, string[] nodeIds, int msec)
         {
             List<NodeId> variableIds = new List<NodeId>();
             List<Type> expectedTypes = new List<Type>();
