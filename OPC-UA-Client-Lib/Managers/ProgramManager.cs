@@ -67,10 +67,10 @@ namespace SimpleUAClientLibrary.Controllers
             Utils.Trace("Suscription created");
 
             // default
-            MonitoredItem m_monitoredItem = Subs.GetMonitoredItem(nodeId, name, monitoringMode, null);
+            //MonitoredItem m_monitoredItem = Subs.GetMonitoredItem(nodeId, name, monitoringMode, null);
 
-            // filtered
-            //MonitoredItem m_monitoredItem = Subs.GetMonitoredItem(nodeId, name, monitoringMode, m_session);   
+            // filtered (requiered to enter MonitoredNode in server)
+            MonitoredItem m_monitoredItem = Subs.GetMonitoredItem(nodeId, name, monitoringMode, m_session);   
 
             m_subscription.AddItem(m_monitoredItem);
             Utils.Trace("Adding monitored item");

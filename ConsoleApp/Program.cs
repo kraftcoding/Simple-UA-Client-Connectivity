@@ -27,9 +27,10 @@ namespace Simple_UA_Client_Connectivity
             subsDictionary.Add("PublishingEnabled", "true");
 
             // Test nodes                     
-            string nodeId = "i=2256"; // ServerStatus
-            //string nodeId = "ns=2;s=0:Green/East"; // Simple Alarm Server
-            string[] nodeIds = { "i=2256", "i=2268", "i=2258" };
+            //string nodeId = "i=2256"; // ServerStatus
+            string nodeId = "i=11493"; // Simple Alarm Server
+            //string[] nodeIds = { "i=2256", "i=2268", "i=2258" };
+            string[] nodeIds = { "i=11493" };
 
             #endregion          
 
@@ -51,7 +52,7 @@ namespace Simple_UA_Client_Connectivity
                 TemplateTsk.Launch(Prg, 2000); // Template task to manage the monitorized suscription events
 
                 /* EXAMPLE 3 : Read nodes task with cancellation token */
-                //ReadNodesTsk.Launch(Prg, nodeIds, 2000);
+               //ReadNodesTsk.Launch(Prg, nodeIds, 2000);
             }
             catch (Exception exception)
             {
